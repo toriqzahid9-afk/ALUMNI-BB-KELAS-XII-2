@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo Scroll Reveal Premium - AOS (Animate On Scroll)</title>
+    
+    <!-- Google Fonts: Poppins (Sans-serif) & Playfair Display (Serif) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Boxicons (untuk icon card) -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    
+    <!-- CDN CSS AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* CSS RESET & VARIABLES */
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #121824;
+            --accent-gold: #d4af37;
+            --accent-gold-glow: rgba(212, 175, 55, 0.3);
+            --text-light: #f3f4f6;
+            --text-muted: #9ca3af;
+            --card-glass: rgba(255, 255, 255, 0.03);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* GLOWING ORBS BACKGROUND */
+        .glow-orbs {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .orb-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, #a855f7 0%, transparent 70%);
+        }
+
+        .orb-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, #06b6d4 0%, transparent 70%);
+            animation-delay: -5s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-40px) scale(1.1); }
+        }
+
+        /* CONTAINER & TYPOGRAPHY */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .demo-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            border-radius: 30px;
+            color: var(--accent-gold);
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .serif-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, var(--text-muted) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* PREMIUM GLASSMORPHISM CARD GRID */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .premium-card {
+            background: var(--card-glass);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
+            position: relative;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .premium-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+
+        .premium-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(212, 175, 55, 0.4);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .premium-card:hover::before {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: var(--accent-gold);
+            margin-bottom: 30px;
+            transition: var(--transition-smooth);
+        }
+
+        .premium-card:hover .card-icon {
+            background: var(--accent-gold);
+            color: #000;
+            box-shadow: 0 0 20px var(--accent-gold-glow);
+            transform: rotate(10deg);
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 15px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .card-text {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .card-footer {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 20px;
+            margin-top: auto;
+        }
+
+        .card-link {
+            color: var(--accent-gold);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .card-link i {
+            font-size: 18px;
+            transition: var(--transition-smooth);
+        }
+
+        .card-link:hover {
+            color: #fff;
+        }
+
+        .card-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .container {
+                padding: 60px 16px;
+            }
+            .premium-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- GLOWING ORBS BACKGROUND -->
+    <div class="glow-orbs">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <header>
+            <span class="demo-tag" data-aos="fade-down" data-aos-duration="800">Demo Interaktif</span>
+            <h1 class="serif-title" data-aos="fade-up" data-aos-duration="1000">Scroll Reveal Entrance</h1>
+            <p class="subtitle" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                Teknologi transisi visual premium menggunakan AOS untuk menghidupkan elemen halaman secara dinamis saat digulirkan.
+            </p>
+        </header>
+
+        <!-- STAGGERED ENTRIES CARD GRID -->
+        <div class="card-grid">
+            
+            <!-- Card 1 -->
+            <div class="premium-card" data-aos="fade-up" data-aos-delay="0">
+                <div>
+                    <div class="card-icon">
+                        <i class='bx bx-layer'></i>
+                    </div>
+                    <h3 class="card-title">Glassmorphism</h3>
+                    <p class="card-text">
+                        Kombinasi efek blur latar belakang dan opacity tipis menciptakan nuansa kaca transparan yang modern, elegan, dan estetik.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-link">Pelajari Selengkapnya <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="premium-card" data-aos="fade-up" data-aos-delay="150">
+                <div>
+                    <div class="card-icon">
+                        <i class='bx bx-wind'></i>
+                    </div>
+                    <h3 class="card-title">Smooth Animation</h3>
+                    <p class="card-text">
+                        Animasi pergerakan naik yang halus menggunakan kurva cubic-bezier memberikan kesan interaksi kelas dunia yang responsif.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-link">Pelajari Selengkapnya <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="premium-card" data-aos="fade-up" data-aos-delay="300">
+                <div>
+                    <div class="card-icon">
+                        <i class='bx bx-rocket'></i>
+                    </div>
+                    <h3 class="card-title">Staggered Delay</h3>
+                    <p class="card-text">
+                        Penundaan animasi bertahap (0ms, 150ms, 300ms) memberikan efek dramatis visual beruntun yang memanjakan mata audiens.
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="card-link">Pelajari Selengkapnya <i class='bx bx-right-arrow-alt'></i></a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CDN JS AOS (Animate On Scroll) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inisialisasi AOS dengan durasi animasi 1000ms
+        AOS.init({
+            duration: 1000,          // Durasi animasi 1000ms (1 detik)
+            once: false,             // Mengulang animasi saat scroll naik & turun
+            easing: 'ease-out-cubic',// Kurva transisi yang halus
+            offset: 120,             // Jarak trigger dari bawah layar
+            delay: 0                 // Delay default
+        });
+    </script>
+</body>
+</html>

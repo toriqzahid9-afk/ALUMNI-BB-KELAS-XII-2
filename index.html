@@ -1,16 +1,320 @@
-<div id="upload-modal" class="lightbox">
-    <span class="close-lightbox" onclick="closeUploadModal()">×</span>
-    <div class="upload-content elegant-card" style="max-width: 500px; margin: 10% auto; padding: 40px;">
-        <h3 style="color: var(--accent-gold); margin-bottom: 20px; font-family: var(--font-heading);">Unggah
-            Kenangan Baru</h3>
-        <div style="text-align: center; margin-top: 20px;">
-            <p style="color: var(--text-muted); margin-bottom: 15px;">Silakan klik tombol di bawah untuk menambah data
-                alumni:</p>
-            <a https://forms.gle/3RqQ84Y4HqCQnGiWA target="_blank" class="btn-primary"
-                style="display: inline-block; padding: 12px 25px; text-decoration: none; border-radius: 8px; font-weight: bold;">
-                BUKA FORMULIR
-            </a>
-        </div>
-        </form>
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenangan Sekolah | SMA Bina Bhakti</title>
+    <!-- Favicon / Logo Profile Tab Browser -->
+    <link rel="icon" type="image/png" href="logo.png?v=2">
+    <link rel="apple-touch-icon" href="logo.png?v=2">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <!-- Icons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=103">
+    <!-- <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script> -->
+</head>
+
+<body>
+
+
+    <!-- Glowing Background Aura Orbs -->
+    <div class="glow-orbs">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+        <div class="glow-orb glow-orb-4"></div>
     </div>
-</div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <button class="logo secret-admin-trigger" onclick="openPinModal()" id="mainLogo" aria-label="Admin Login">
+                <img src="logo.png?v=2" alt="Logo" class="nav-logo-img" id="navLogoImg"
+                    onerror="this.outerHTML='<i class=\'bx bxs-school\' style=\'font-size: 32px; color: var(--accent-gold);\'></i>'">
+                <span class="logo-text">Smas Bina Bhakti</span>
+            </button>
+
+            <div class="nav-right-actions">
+                <button class="btn-theme-toggle" id="themeToggle" title="Ganti Mode Terang / Gelap"
+                    aria-label="Toggle Theme">
+                    <i class='bx bx-sun'></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation Menu">
+                    <i class='bx bx-menu'></i>
+                </button>
+            </div>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#hero">BERANDA</a></li>
+                <li><a href="#family">KELUARGA KAMI</a></li>
+                <li><a href="#gallery">GALERI</a></li>
+                <li><a href="#quotes">PESAN</a></li>
+                <li id="adminLogoutItem" style="display: none;"><button class="btn-logout-premium"
+                        onclick="logoutAdmin()">KELUAR ADMIN</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="hero-split">
+        <div class="hero-text-side">
+            <div class="hero-content-box reveal">
+                <span class="hero-badge">ANGKATAN 2026 KELAS XII-2</span>
+                <h1 class="hero-title">SMAS BINA BHAKTI<br><span style="color: var(--accent-gold);">ALUMNI
+                        2023 / 2026</span></h1>
+                <p class="hero-text">Selamat datang di web memori SMAS Bina Bhakti, tempat mengabadikan setiap momen
+                    indah bersama angkatan 2026.</p>
+                <div class="hero-btns">
+                    <a href="#family" class="btn-outline-gold">JELAJAHI MEMORI</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Walikelas Section -->
+    <section id="walikelas" class="section-padding reveal" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="section-badge">GURU</span>
+                <h2 class="serif-title">WALI KELAS</h2>
+                <div class="title-line mx-auto"></div>
+            </div>
+            <div id="walikelas-container" class="flex-center mt-40">
+                <div class="family-card walikelas-card">
+                    <div id="walikelas-admin-btns"></div>
+                    <div class="family-photo teacher-photo">
+                        <img id="walikelas-img" src="https://via.placeholder.com/180" alt="Foto Wali Kelas">
+                    </div>
+                    <p
+                        style="margin-bottom: 5px; color: var(--accent-gold); font-size: 0.85rem; letter-spacing: 2px; font-weight: 600; text-transform: uppercase;">
+                        GURU PEMBIMBING</p>
+                    <h3 id="walikelas-name">HJ. SITI AMAMAH, SE</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Family Section -->
+    <section id="family" class="section-padding reveal">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="section-badge">MEMORIES</span>
+                <h2 class="serif-title">Keluarga Kami</h2>
+                <div class="title-line mx-auto"></div>
+                <p class="section-subtitle"></p>
+                <button class="btn-outline-gold" style="margin-top: 30px;" onclick="openModal('familyModal')">+ TAMBAH
+                    ANGGOTA</button>
+            </div>
+            <div class="family-marquee-container" id="family-marquee-container">
+                <div class="family-track" id="family-track-1"></div>
+                <div class="family-track reverse" id="family-track-2"></div>
+                <div class="family-track" id="family-track-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding darker-bg reveal">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="section-badge">GALERI</span>
+                <h2 class="serif-title">Bingkai Memori</h2>
+                <div class="title-line mx-auto"></div>
+
+                <button id="btnTambahKenangan" class="btn-outline-gold" style="margin-top: 30px;"
+                    onclick="openModal('uploadModal')">+ TAMBAH KENANGAN</button>
+            </div>
+            <div class="gallery-marquee-container" id="gallery-marquee-container">
+                <div class="gallery-track reverse" id="gallery-track"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="section-padding reveal">
+        <div class="container">
+            <div class="section-title">
+                <span class="section-badge">PESAN & KESAN</span>
+                <h2 class="serif-title">Kata Terakhir</h2>
+                <div class="title-line"></div>
+                <div class="section-description"
+                    style="max-width: 800px; margin: 20px 0; color: var(--text-muted); line-height: 1.8;">
+                    <p>Tinggalkan jejak kata-katamu di sini sebagai pengingat bahwa kita pernah berjuang bersama.</p>
+                </div>
+            </div>
+            <div class="quotes-marquee-container" id="quotes-marquee-container">
+                <div class="quote-track" id="quote-track-1"></div>
+                <div class="quote-track reverse" id="quote-track-2"></div>
+                <div class="quote-track" id="quote-track-3"></div>
+            </div>
+            <div class="quote-form-container">
+                <h3 class="quote-form-title">Tinggalkan Pesan Anda</h3>
+                <form id="quote-form">
+                    <input type="text" id="quote-name" placeholder="Nama Anda" required class="gold-input">
+                    <textarea id="quote-message" placeholder="Tulis pesan, kesan, atau harapan kamu di sini..." required
+                        rows="4" class="gold-input resize-none"></textarea>
+                    <button type="submit" class="btn-outline-gold w-100" id="btn-submit-quote">KIRIM PESAN</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>© 2026 Angkatan SMA Bina Bhakti. Mengabadikan setiap momen.</p>
+            <div class="footer-credit">
+                <a href="#" class="credit-badge">
+                    WEB INI DIBUAT OLEH <span class="credit-name">DZAKWAN</span> <span class="moving-emoji">😎</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <div id="walikelasModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('walikelasModal')"></div>
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('walikelasModal')">&times;</button>
+            <h3 class="modal-title">Set Walikelas</h3>
+            <form id="walikelasForm">
+                <div class="upload-area" id="walikelasDropZone">
+                    <i class='bx bx-user' style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                    <p>Pilih foto Walikelas</p>
+                </div>
+                <input type="file" id="walikelasPhotoFile" accept="image/*,.heic,.heif" style="display:none">
+                <div id="walikelasFilePreview" class="file-preview"></div>
+                <button type="submit" class="btn-outline-gold w-100">SIMPAN PERUBAHAN</button>
+                <div id="uploadLoader" style="display:none; text-align:center; margin-top:10px;">
+                    <span class="spinner"></span> Mengonversi & Mengunggah...
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="familyModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('familyModal')"></div>
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('familyModal')">&times;</button>
+            <h3 class="modal-title">Daftar Anggota</h3>
+            <form id="familyForm">
+                <input type="text" id="familyMemberName" placeholder="Nama Lengkap" required class="gold-input">
+                <div class="upload-area" id="familyDropZone">
+                    <i class='bx bx-user-circle'
+                        style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                    <p>Klik profil Anda</p>
+                </div>
+                <input type="file" id="familyPhotoFile" accept="image/*,.heic,.heif" required style="display:none">
+                <div id="familyFilePreview" class="file-preview"></div>
+                <button type="submit" id="btn-family-submit" class="btn-outline-gold w-100">DAFTAR SEKARANG</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Foto / Data Anggota (Admin) -->
+    <div id="editFamilyModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('editFamilyModal')"></div>
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('editFamilyModal')">&times;</button>
+            <h3 class="modal-title">Ganti Foto Profil Anggota</h3>
+            <p style="text-align: center; color: var(--text-muted); font-size: 13px; margin-bottom: 20px;">
+                Mengubah foto profil untuk: <strong id="editFamilyTargetName" style="color: var(--accent-gold);"></strong>
+            </p>
+            <form id="editFamilyForm">
+                <input type="hidden" id="editFamilyId">
+                <label style="color: var(--text-muted); font-size: 12px; margin-bottom: 6px; display: block;">Nama Anggota:</label>
+                <input type="text" id="editFamilyName" placeholder="Nama Lengkap" required class="gold-input">
+                
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="width: 110px; height: 110px; border-radius: 50%; overflow: hidden; margin: 0 auto; border: 2px solid var(--accent-gold); box-shadow: 0 0 15px rgba(255,215,0,0.3); background: var(--bg-surface);">
+                        <img id="editFamilyCurrentImg" src="" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://via.placeholder.com/110'">
+                    </div>
+                    <span style="font-size: 12px; color: var(--text-muted); display: block; margin-top: 8px;">Foto Profil Saat Ini</span>
+                </div>
+
+                <label style="color: var(--text-muted); font-size: 12px; margin-bottom: 6px; display: block;">Pilih Foto Baru (Opsional jika hanya ganti nama):</label>
+                <div class="upload-area" id="editFamilyDropZone">
+                    <i class='bx bx-camera' style="font-size: 40px; color: var(--accent-gold); margin-bottom: 12px;"></i>
+                    <p>Klik untuk memilih foto PP baru</p>
+                </div>
+                <input type="file" id="editFamilyPhotoFile" accept="image/*,.heic,.heif" style="display:none">
+                <div id="editFamilyFilePreview" class="file-preview"></div>
+                <button type="submit" id="btn-edit-family-submit" class="btn-solid-gold w-100" style="margin-top: 15px; border-radius: 12px; cursor: pointer;">SIMPAN PERUBAHAN FOTO</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="uploadModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('uploadModal')"></div>
+        <div class="modal-content">
+            <button class="btn-close" onclick="closeModal('uploadModal')">&times;</button>
+            <h3 class="modal-title">Unggah Foto</h3>
+            <form id="uploadForm">
+                <div class="upload-area" id="dropZone">
+                    <i class='bx bx-cloud-upload'
+                        style="font-size: 40px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+                    <p>Pilih foto kenangan</p>
+                </div>
+                <input type="file" id="photoFile" accept="image/*,.heic,.heif" required style="display:none">
+                <div id="filePreview" class="file-preview"></div>
+                <button type="submit" class="btn-outline-gold w-100">UNGGAH SEKARANG</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="pinModal" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('pinModal')"></div>
+        <div class="modal-content" style="max-width: 350px; text-align: center;">
+            <button class="btn-close" onclick="closeModal('pinModal')">&times;</button>
+            <i class='bx bxs-lock-alt' style="font-size: 50px; color: var(--accent-gold); margin-bottom: 20px;"></i>
+            <h3 class="modal-title">Akses Admin</h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">Masukkan 6 digit kode rahasia</p>
+            <input type="password" id="adminPin" maxlength="6" placeholder="******"
+                style="text-align: center; font-size: 24px; letter-spacing: 10px; padding: 15px;" class="gold-input">
+            <button onclick="verifyPin()" class="btn-outline-gold w-100">MASUK</button>
+            <div id="pinError" style="color: #e74c3c; font-size: 12px; margin-top: 10px; display: none;">Akses Ditolak!
+            </div>
+        </div>
+    </div>
+
+    <!-- Global Loading Overlay -->
+    <div id="globalLoader" class="modal" style="display: none; z-index: 20000; background: rgba(0,0,0,0.9);">
+        <div style="text-align: center; color: var(--accent-gold);">
+            <div class="spinner" style="width: 50px; height: 50px; margin-bottom: 20px;"></div>
+            <h3 id="loaderText">Sedang Memproses...</h3>
+            <p style="font-size: 12px; margin-top: 10px; opacity: 0.7;">Sabar ya, HP kamu sedang bekerja keras 😊</p>
+        </div>
+    </div>
+
+    <div id="lightbox" class="modal">
+        <div class="modal-backdrop" onclick="closeModal('lightbox')"></div>
+        <div class="lightbox-content" id="lightbox-image-container">
+            <button class="lightbox-nav prev" onclick="changeLightbox(-1)">&#10094;</button>
+            <button class="lightbox-nav next" onclick="changeLightbox(1)">&#10095;</button>
+            <button class="btn-close" onclick="closeModal('lightbox')">&times;</button>
+            <img id="lightbox-img" src="" alt="Zoomed">
+        </div>
+        <div class="lightbox-message-container" id="lightbox-message-container"
+            style="display: none; width: 100%; height: 100%; position: fixed; top: 0; left: 0; justify-content: center; align-items: center; z-index: 10002;">
+            <button class="lightbox-nav prev" onclick="changeMessageLightbox(-1)">&#10094;</button>
+            <button class="lightbox-nav next" onclick="changeMessageLightbox(1)">&#10095;</button>
+            <div class="lightbox-message-content">
+                <button class="btn-close" onclick="closeModal('lightbox')"
+                    style="top: 20px; right: 20px;">&times;</button>
+                <p id="lightbox-msg-text"></p>
+                <h4 id="lightbox-msg-author"></h4>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="script.js?v=3.0"></script>
+</body>
+
+</html>
